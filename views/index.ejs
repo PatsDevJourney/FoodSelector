@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Restaurant Search</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 class="header">Server 8080</h1>
+    <section class="restaurant-add">
+    <h1 class="main-header">New Restaurant? Add it here! </h1>
+    <form action="/addRestaurant" class="add-restaurant">
+        <div class="res-name">
+        <label for="restaurant-name">Restaurant Name</label>
+        <input type="text" class="restaurant-name" name="restaurant-name" placeholder="Restaurant Name">
+            </div>
+        <div class="res-loc">
+        <label for="restaurant-location">Location</label>
+        <input type="text" class="restaurant-location" name="restaurant-location" placeholder="Restaurant Location">
+            </div>
+        <div class="res-type">
+            <label for="restaurant-location">Type</label>
+            <input type="text" class="restaurant-type" name="restaurant-type" placeholder="Type of food">
+                 </div>
+
+        <div class="res-rec">
+             <label for="restaurant-location">Reccomendation</label>
+            <input type="text" class="restaurant-recommendation" name="restaurant-recommendation" placeholder="Food Reccomendations">
+                </div>
+            <button class="res-button" type="submit">Submit</button>
+        
+    </form>
+</section>
 </body>
 </html>

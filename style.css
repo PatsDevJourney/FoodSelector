@@ -1,0 +1,53 @@
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html{
+    margin: 0 auto;
+
+}
+.add-restaurant,.main-header{
+    padding: 1rem;
+}
+.restaurant-add{
+    margin: 0 auto;
+    max-width: 40%;
+    /* border: 1px solid; */
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px gray;
+    }
+
+.restaurant-add .res-loc,.res-name, .res-rec, .res-type{
+    padding: .8rem 0;
+
+     }
+
+.res-name{
+    width: 100%;
+}
+.res-loc{
+    width: 100%;
+}
+
+.res-name input, .res-loc input, .res-rec input, .res-type input{
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid black;
+    
+}
+
+.res-name label, res.res-loc label{
+    margin-bottom: 4px;
+}
+
+.res-button{
+    border: 0;
+    background-color: #5993ff;
+    height: 1.5rem;
+    width: 3.75rem;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 5px;
+}
