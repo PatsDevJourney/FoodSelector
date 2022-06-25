@@ -8,29 +8,43 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <main class="forms">
     <section class="restaurant-add">
     <h1 class="main-header">New Restaurant? Add it here! </h1>
-    <form action="/addRestaurant" class="add-restaurant">
+    <form action="/addRestaurant" class="add-restaurant" method="post">
         <div class="res-name">
         <label for="restaurant-name">Restaurant Name</label>
-        <input type="text" class="restaurant-name" name="restaurant-name" placeholder="Restaurant Name">
+        <input type="text" class="restaurant-name" name="restaurantName" placeholder="Name">
             </div>
         <div class="res-loc">
         <label for="restaurant-location">Location</label>
-        <input type="text" class="restaurant-location" name="restaurant-location" placeholder="Restaurant Location">
+        <input type="text" class="restaurant-location" name="restaurantLocation" placeholder="Location">
             </div>
         <div class="res-type">
-            <label for="restaurant-location">Type</label>
-            <input type="text" class="restaurant-type" name="restaurant-type" placeholder="Type of food">
+            <label for="restaurantType">Type</label>
+            <input type="text" class="restaurant-type" name="restaurantType" placeholder="Type of food">
                  </div>
 
         <div class="res-rec">
              <label for="restaurant-location">Reccomendation</label>
             <input type="text" class="restaurant-recommendation" name="restaurant-recommendation" placeholder="Food Reccomendations">
                 </div>
-            <button class="res-button" type="submit">Submit</button>
+            <input type="submit" class="resButton" value="Submit">
         
     </form>
 </section>
+<section class="showItems">
+    <h1 class="showHeader">Restaurants</h1>
+    <ul class="items">
+            <% items.forEach((data)=>{%>
+                <li>
+                <%= data.name %> - <%= data.food%> - <%= data.location %> - ID: <%=data._id%>
+                    <button class="delete-item" name="deleteBtn" value="<%= data._id %>"></button>
+                </li>
+            <% }) %>
+        </ul>
+</section>
+</main>
+
 </body>
 </html>

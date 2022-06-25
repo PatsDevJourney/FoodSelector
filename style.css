@@ -40,6 +40,8 @@ html{
     margin-bottom: 4px;
 }
 
+
+
 .res-button{
     border: 0;
     background-color: #5993ff;
@@ -51,3 +53,31 @@ html{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 5px;
 }
+.showItems{
+    margin: 5px auto;
+    max-width: 40%;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px gray;
+    min-height: 20rem;
+    padding: 1rem;
+}
+.random-food{
+    padding: .5rem;
+}
+
+.get-food{
+    padding: .5rem;
+}
+
+.items{
+    list-style-type: none;
+}
+
+.items li{
+    margin-bottom: .5rem;
+    border-bottom: 1px solid black;
+    max-width: 70%;
+    padding: 5px;
+}
+
+
