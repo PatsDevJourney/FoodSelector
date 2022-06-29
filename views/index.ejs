@@ -11,24 +11,22 @@
     <main class="forms">
     <section class="restaurant-add">
     <h1 class="main-header">New Restaurant? Add it here! </h1>
+    
     <form action="/addRestaurant" class="add-restaurant" method="post">
         <div class="res-name">
         <label for="restaurant-name">Restaurant Name</label>
-        <input type="text" class="restaurant-name" name="restaurantName" placeholder="Name">
+        <input type="text" class="restaurant-name" name="restaurantName" placeholder="Name" required>
             </div>
         <div class="res-loc">
         <label for="restaurant-location">Location</label>
-        <input type="text" class="restaurant-location" name="restaurantLocation" placeholder="Location">
+        <input type="text" class="restaurant-location" name="restaurantLocation" placeholder="Location" required>
             </div>
         <div class="res-type">
             <label for="restaurantType">Type</label>
-            <input type="text" class="restaurant-type" name="restaurantType" placeholder="Type of food">
+            <input type="text" class="restaurant-type" name="restaurantType" placeholder="Type of food" required>
                  </div>
 
-        <div class="res-rec">
-             <label for="restaurant-location">Reccomendation</label>
-            <input type="text" class="restaurant-recommendation" name="restaurant-recommendation" placeholder="Food Reccomendations">
-                </div>
+        
             <input type="submit" class="resButton" value="Submit">
         
     </form>
@@ -38,8 +36,10 @@
     <ul class="items">
             <% items.forEach((data)=>{%>
                 <li>
-                <%= data.name %> - <%= data.food%> - <%= data.location %> - ID: <%=data._id%>
-                    <button class="delete-item" name="deleteBtn" value="<%= data._id %>"></button>
+                <%= data.name %> - <%= data.food%> - <%= data.location %> %>
+                <form action="/delete-item" method="post">   
+                <button class="delete-item" name="deleteBtn" value="<%= data._id %>">Delete</button>
+            </form>
                 </li>
             <% }) %>
         </ul>

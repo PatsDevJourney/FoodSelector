@@ -4,7 +4,8 @@
 }
 html{
     margin: 0 auto;
-
+    background-image: url(./pictures/background.jpg);
+    background-size: cover;
 }
 .add-restaurant,.main-header{
     padding: 1rem;
@@ -15,7 +16,17 @@ html{
     /* border: 1px solid; */
     border-radius: 15px;
     box-shadow: 0px 0px 10px gray;
+    background-color: rgb(233, 233, 233);
     }
+
+@media screen and (max-width: 400px){
+    
+    .restaurant-add{
+        width: 100%;
+        background-color: yellow;
+    }
+
+}
 
 .restaurant-add .res-loc,.res-name, .res-rec, .res-type{
     padding: .8rem 0;
@@ -60,6 +71,7 @@ html{
     box-shadow: 0px 0px 10px gray;
     min-height: 20rem;
     padding: 1rem;
+    background-color: rgb(233, 233, 233);
 }
 .random-food{
     padding: .5rem;

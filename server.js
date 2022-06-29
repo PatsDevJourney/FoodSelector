@@ -9,6 +9,7 @@ const Locations = require("./models/locations") //food locations module with sch
 require("dotenv").config({path: path.resolve(__dirname, ".env")}); //adding ENV files to server.js
 const connectionStr = process.env.MONGOSTR; //getting mongoDB string from .env file
 const mongoose = require("mongoose"); // adding mongoose modules to this file
+const Restaurant = require('./models/restaurants');
 const PORT = process.env.PORT; //creating port for app.listen
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -52,7 +53,7 @@ app.post('/addRestaurant', (req, res) =>{
 //main page route handler
 app.get("/", async (req, res) =>{
     let restaurants =  await Restaurants.find({}); //finds all documents in MongoDB 
-    console.log(restaurants); //console logs data
+    // console.log(restaurants); //console logs data
     res.render("index", {items: restaurants }); //rendering index.ejs file and passing restaurant data
     console.log("Rendering Index.ejs") //  functionality check
     
@@ -63,10 +64,18 @@ app.get("/", async (req, res) =>{
 
 
 //Delete route for delete button
-app.get("/delete-item", (req, res)=>{
-    
-   console.log(req.body);
-   res.redirect("/")
+app.post("/delete-item", (req, res)=>{
+   
+    Restaurants.findByIdAndDelete(req.body.deleteBtn, (err, docs)=>
+    {
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log("Deleted " + docs.name);
+        }
+    });
+    res.redirect("/");
    /*
    TODO: Test if req.body.deleteBtn returns the _id of the mongo data
    ------------------------------------------------------------------
