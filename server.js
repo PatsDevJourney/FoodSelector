@@ -1,7 +1,7 @@
 //node modules
 const express = require('express') //express
 const app = express() //express function
-const bodyParser = require("body-parser"); //body parser
+const bodyParser = require("body-parser"); //body parser gain access to req.body
 const MongoClient = require("mongodb").MongoClient; //mongo DB client
 const path = require("path"); //adding path module
 const Restaurants = require("./models/restaurants"); // Restaurant module with schema and models
@@ -21,9 +21,9 @@ app.set("view engine", "ejs"); // setting EJS view engine
 mongoose.connect(connectionStr, {useUnifiedTopology: true, useNewUrlParser: true})
 .then((result)=>{
     //connecting to server once DB connected successfully, will not connect if DB doesn't connect
-    console.log("Connected to DB");
+        console.log("DB Connected");
     app.listen(PORT, ()=>{
-        console.log("Listening on " + PORT);
+        console.log("connected");
     })
    
 })
@@ -69,17 +69,13 @@ app.post("/delete-item", (req, res)=>{
     Restaurants.findByIdAndDelete(req.body.deleteBtn, (err, docs)=>
     {
         if(err){
-            console.log(err)
+            return err;
         }
         else{
-            console.log("Deleted " + docs.name);
+            console.log("Deleted ");
         }
     });
     res.redirect("/");
-   /*
-   TODO: Test if req.body.deleteBtn returns the _id of the mongo data
-   ------------------------------------------------------------------
-   ->If data._id works, try to delete an item from list of restaurants
-   */
+   
 })
 
