@@ -19,32 +19,52 @@
             </div>
         <div class="res-loc">
         <label for="restaurant-location">Location</label>
-        <input type="text" class="restaurant-location" name="restaurantLocation" placeholder="Location" required>
+        <input type="text" class="restaurant-location" name="restaurantLocation" placeholder="Restaurant Location" required>
             </div>
         <div class="res-type">
             <label for="restaurantType">Type</label>
             <input type="text" class="restaurant-type" name="restaurantType" placeholder="Type of food" required>
                  </div>
+        <div class="res-type">
+            <label for="restaurantWebsite">Website</label>
+            <input type="text" class="restaurant-Website" name="restaurantWebsite" placeholder="URL" required>
+                 </div>
 
-        
-            <input type="submit" class="resButton" value="Submit">
+                 <button type="submit" class="resButton" value="Submit">Submit</button>
+            <!-- <input type="submit" class="resButton" value="Submit"> -->
         
     </form>
 </section>
 <section class="showItems">
-    <h1 class="showHeader">Restaurants</h1>
+    <section class="heading-section">
+        <h1 class="showHeader">Restaurants</h1>
+        <p class="random-item">Random Restaurant</p>
+        <a href="#" id="toggle-display" class="toggle-display"> Show Items +</a>
+    </section>
+    <section id="show-items" class="">
     <ul class="items">
-            <% items.forEach((data)=>{%>
+            <% data.items.forEach((data)=>{%>
                 <li>
-                <%= data.name %> - <%= data.food%> - <%= data.location %> %>
+                <%= data.name %> - <%= data.food%> - <%= data.location %> - <a href="<%=data.website%>" target="_blank">Website</a> %>
                 <form action="/delete-item" method="post">   
                 <button class="delete-item" name="deleteBtn" value="<%= data._id %>">Delete</button>
             </form>
                 </li>
             <% }) %>
         </ul>
+    </section>
 </section>
+<div class="modal-container">
+<div class="modal hidden">
+    <h2>Unsure? Why not try this place?</h2>
+    <h2 id="random-restaurant"><%= data.random.name %></h2>
+    <h3>Check Out The Website!</h3>
+    <h2><a href="<%=data.random.website%>" target="_blank"><%= data.random.name%></a></h2>
+</div>
+</div>
 </main>
+
+<script src="script.js"></script>
 
 </body>
 </html>

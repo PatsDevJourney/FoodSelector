@@ -9,12 +9,12 @@ const Locations = require("./models/locations") //food locations module with sch
 require("dotenv").config({path: path.resolve(__dirname, ".env")}); //adding ENV files to server.js
 const connectionStr = process.env.MONGOSTR; //getting mongoDB string from .env file
 const mongoose = require("mongoose"); // adding mongoose modules to this file
-const Restaurant = require('./models/restaurants');
 const PORT = process.env.PORT; //creating port for app.listen
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname)); //adding ability to send static web pages 
 app.set("view engine", "ejs"); // setting EJS view engine
+
 
 
 //connecting to MONGODB through mongoose 
@@ -30,6 +30,34 @@ mongoose.connect(connectionStr, {useUnifiedTopology: true, useNewUrlParser: true
 .catch((err)=>{
     console.log(err);
 })
+
+
+// app.get("/random-item", async (req, res)=>{
+   
+//     let amountOfRestaurants = await Restaurants.estimatedDocumentCount();
+//     let randomNumber = Math.floor(Math.random() * amountOfRestaurants);
+//     let randomRestaurant = await Restaurants.findOne().skip(randomNumber);
+//     res.render("index", {randomItem: randomRestaurant});
+//     res.redirect("/");
+//     });
+    
+
+
+//main page route handler
+app.get("/", async (req, res) =>{
+    let restaurants =  await Restaurants.find({}); //finds all documents in MongoDB 
+    let amountOfRestaurants = await Restaurants.estimatedDocumentCount();
+    let randomNumber = Math.floor(Math.random() * amountOfRestaurants);
+    let randomRestaurant = await Restaurants.findOne().skip(randomNumber);
+    if(!randomRestaurant){
+        randomRestaurant = "";
+    }
+    
+    res.render("index", {data: {items: restaurants, random: randomRestaurant}}); //rendering index.ejs file and passing restaurant data
+    console.log("Rendering Index.ejs") //  functionality check
+    
+})
+
 //add restaurant post route handler
 app.post('/addRestaurant', (req, res) =>{
     // resName = req.body.restaurantName.charAt(0).toUpperCase() + req.body.restaurantName.slice(1).toLowerCase();
@@ -39,26 +67,22 @@ app.post('/addRestaurant', (req, res) =>{
   const resAdd = new Restaurants({
     name: req.body.restaurantName, 
     location: req.body.restaurantLocation, 
-    food: req.body.restaurantType
+    food: req.body.restaurantType,
+    website: req.body.restaurantWebsite
   })
 
   //saving instance to mongo DB then redirecting to page
-  resAdd.save().then((result)=>console.log(req.body.id)).
-  then(res.redirect(req.get('referer')))
+  
+  resAdd.save().then(result => console.log(result.name)).
+  then(console.log("added to DB"))
   .catch(err=>console.log(err));
 
 
+    res.redirect("/");
+
+  
   
 })
-//main page route handler
-app.get("/", async (req, res) =>{
-    let restaurants =  await Restaurants.find({}); //finds all documents in MongoDB 
-    // console.log(restaurants); //console logs data
-    res.render("index", {items: restaurants }); //rendering index.ejs file and passing restaurant data
-    console.log("Rendering Index.ejs") //  functionality check
-    
-})
-
 
 
 
@@ -78,4 +102,5 @@ app.post("/delete-item", (req, res)=>{
     res.redirect("/");
    
 })
+
 

@@ -13,6 +13,10 @@ const foodPlace = new Schema({
     food: {
         type: String, 
         required: true
+    },
+    website:{
+        type:String,
+        required: true
     }
     
 }, {timestamps: true});
